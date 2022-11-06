@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Live demo => [here...](https://musa-the-holy-grail.netlify.app/) :star: :star: :star:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# The Holy Grail
 
-## Available Scripts
+Your task this week is to find the location of the Holy Grail. Given [this collection of treasure chests](https://e0f5e8673c64491d8cce34f5.z35.web.core.windows.net/treasure.json) in JSON format, you'll need to traverse and explore the contents of each JSON treasure chest to find clues. The chests and their various items may have attached notes, engravings, messages and other cryptic clues on/in them - you should explore these properties for any external links which could lead you to additional lists of treasure. If you locate such links, your code should download the list and search those chests as well. You've located the Holy Grail when you locate a chest item with the name `holy-grail`.
+# Rewards:
+:five:   Points are awarded for a working algorithm which returns the location of the chest containing the Holy Grail.
 
-In the project directory, you can run:
+:three:  Further points are awarded for returning the total value** of all chest contents across all lists.
 
-### `npm start`
+:one:  Further points are awarded for returning the total number of dead spiders across all lists.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+:one:  Further points are awarded for returning the most common size of boots across all lists.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+** <em>Values are all measured in doubloons. Any Sapphires found are worth 200 doubloons, Rubies are worth 250 doubloons, and Diamonds are worth 400 doubloons.</em>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Example:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Your solution might return:
+```
+Holy Grail location: 20.19 -19.83
+Total chest value: 25600 doubloons
+Dead spiders: 27
+Most common boot size: 8
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Handler function:
+```
+./src/utils/holyGrail.js
+```
+## Install 
+```
+yarn
+```
+## Play(GUI)
+```
+yarn start
+```
+## Testing
+```
+yarn test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Good luck :)
