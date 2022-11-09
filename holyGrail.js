@@ -8,16 +8,18 @@ let recursiveCount = 0;
 async function holyGrail(jsonLink) {
   const response = await fetch(jsonLink);
   const data = await response.json();
-  await spreadObject(data);
+  await checkObjectRecursively(data);
   recursiveCount--;
 }
 
-function spreadObject(objectData) {
+function checkObjectRecursively(objectData) {
   recursiveCount++;
+
   Object.entries(objectData).forEach(([key, value]) => {
     if (objectData?.contents?.hasOwnProperty('holy-grail')) {
       allData['Holy Grail location'] = objectData.location;
     }
+    
     if (key === 'spider') {
       countDeadSpiders(value);
     } else if (key === 'sapphire' || key === 'ruby' || key === 'diamond') {
@@ -25,7 +27,7 @@ function spreadObject(objectData) {
     } else if (key === 'boots') {
       countBootSizes(value);
     } else if (typeof value === 'object') {
-      return spreadObject(value);
+      return checkObjectRecursively(value);
     } else if (typeof value === 'string' && value.includes('http')) {
       const [first] = value.split('json');
       const [_, end] = first.split('https://');
