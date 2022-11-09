@@ -3,7 +3,7 @@ const allData = {
   'Total chest value': 0,
   bootSizes: {},
 };
-let recursiveCount= 0;
+let recursiveCount = 0;
 
 async function holyGrail(jsonLink) {
   const response = await fetch(jsonLink);
@@ -31,14 +31,13 @@ function spreadObject(objectData) {
       const [_, end] = first.split('https://');
       const newLink = 'https://' + end + 'json';
       recursiveCount++;
-     return holyGrail(newLink);
+      return holyGrail(newLink);
     }
   });
   recursiveCount--;
   if (recursiveCount === 0) {
-   return returnHolyGrailLocation();
+    return returnHolyGrailLocation();
   }
- 
 }
 
 function countDeadSpiders(spider) {
@@ -46,7 +45,6 @@ function countDeadSpiders(spider) {
     allData['Dead spiders']++;
   }
 }
-
 
 function findTotalChestValue(key, value) {
   if (key === 'sapphire') {
@@ -67,7 +65,9 @@ function countBootSizes(boots) {
 }
 
 function returnHolyGrailLocation() {
-  allData['Most common boot size']=Object.entries(allData.bootSizes).sort((a, b) => b[1] - a[1])[0][0];//find the most common boot size
+  allData['Most common boot size'] = Object.entries(allData.bootSizes).sort(
+    (a, b) => b[1] - a[1]
+  )[0][0]; //find the most common boot size
   delete allData.bootSizes;
   console.log(allData);
   return allData;
