@@ -8,8 +8,8 @@ let recursiveCount= 0;
 async function holyGrail(jsonLink) {
   const response = await fetch(jsonLink);
   const data = await response.json();
-  spreadObject(data);
-  
+  await spreadObject(data);
+  recursiveCount--;
 }
 
 function spreadObject(objectData) {
@@ -30,12 +30,13 @@ function spreadObject(objectData) {
       const [first] = value.split('json');
       const [_, end] = first.split('https://');
       const newLink = 'https://' + end + 'json';
+      recursiveCount++;
      return holyGrail(newLink);
     }
   });
   recursiveCount--;
   if (recursiveCount === 0) {
-    returnHolyGrailLocation();
+   return returnHolyGrailLocation();
   }
  
 }
@@ -66,12 +67,10 @@ function countBootSizes(boots) {
 }
 
 function returnHolyGrailLocation() {
-  console.log("recursiveCount", recursiveCount);
   allData['Most common boot size']=Object.entries(allData.bootSizes).sort((a, b) => b[1] - a[1])[0][0];//find the most common boot size
-  // const formattedDoubloon =allData['Total chest value'] + " doubloons";
-  // allData['Total chest value']=formattedDoubloon ;//format the total chest value
-  console.log({ allData });
-  return allData.holyGrailLocation;
+  delete allData.bootSizes;
+  console.log(allData);
+  return allData;
 }
 
 holyGrail(
