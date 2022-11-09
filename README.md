@@ -28,20 +28,10 @@ Most common boot size: 8
 
 ## Handler function:
 ```
-./src/utils/holyGrail.js
+./holyGrail.js
 ```
-## Install 
+## Start
 ```
-yarn
+node ./holyGrail.js
 ```
-## Play(GUI)
-```
-yarn start
-```
-## Testing
-```
-yarn test
-```
-
-
 ## Good luck :)
