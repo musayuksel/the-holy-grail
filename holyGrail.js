@@ -1,6 +1,7 @@
 const allData = {
   recursiveCount: 0,
   'Dead spiders': 0,
+  'Total chest value': 0,
 };
 
 async function holyGrail(jsonLink) {
@@ -15,9 +16,11 @@ function spreadObject(objectData) {
     if (objectData?.contents?.hasOwnProperty('holy-grail')) {
       allData['Holy Grail location'] = objectData.location;
     }
-    if(key === 'spider'){
+    if (key === 'spider') {
       countDeadSpiders(value);
-    }else if (typeof value === 'object') {
+    } else if (key === 'sapphire' || key === 'ruby' || key === 'diamond') {
+      findTotalChestValue(key, value);
+    } else if (typeof value === 'object') {
       spreadObject(value);
     } else if (typeof value === 'string' && value.includes('http')) {
       const [first] = value.split('json');
@@ -32,8 +35,8 @@ function spreadObject(objectData) {
   }
 }
 
-function countDeadSpiders(spider){
-  if(!spider.alive){
+function countDeadSpiders(spider) {
+  if (!spider.alive) {
     allData['Dead spiders']++;
   }
 }
@@ -45,6 +48,16 @@ holyGrail(
 function returnHolyGrailLocation() {
   console.log({ allData });
   return allData.holyGrailLocation;
+}
+
+function findTotalChestValue(key, value) {
+  if (key === 'sapphire') {
+    allData['Total chest value'] += value.count * 200;
+  } else if (key === 'ruby') {
+    allData['Total chest value'] += value.count * 250;
+  } else if (key === 'diamond') {
+    allData['Total chest value'] += value.count * 400;
+  }
 }
 // Holy Grail location: 20.19 -19.83
 // Total chest value: 25600 doubloons
