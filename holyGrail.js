@@ -2,24 +2,24 @@ const allData = {
   'Dead spiders': 0,
   'Total chest value': 0,
   bootSizes: {},
+  recursiveCount: 0,
 };
-let recursiveCount = 0;
 
 async function holyGrail(jsonLink) {
   const response = await fetch(jsonLink);
   const data = await response.json();
   await checkObjectRecursively(data);
-  recursiveCount--;
+  allData.recursiveCount--;
 }
 
 function checkObjectRecursively(objectData) {
-  recursiveCount++;
+  allData.recursiveCount++;
 
   Object.entries(objectData).forEach(([key, value]) => {
     if (objectData?.contents?.hasOwnProperty('holy-grail')) {
       allData['Holy Grail location'] = objectData.location;
     }
-    
+
     if (key === 'spider') {
       countDeadSpiders(value);
     } else if (key === 'sapphire' || key === 'ruby' || key === 'diamond') {
@@ -32,12 +32,12 @@ function checkObjectRecursively(objectData) {
       const [first] = value.split('json');
       const [_, end] = first.split('https://');
       const newLink = 'https://' + end + 'json';
-      recursiveCount++;
+      allData.recursiveCount++;
       return holyGrail(newLink);
     }
   });
-  recursiveCount--;
-  if (recursiveCount === 0) {
+  allData.recursiveCount--;
+  if (allData.recursiveCount === 0) {
     return returnHolyGrailLocation();
   }
 }
@@ -70,7 +70,8 @@ function returnHolyGrailLocation() {
   allData['Most common boot size'] = Object.entries(allData.bootSizes).sort(
     (a, b) => b[1] - a[1]
   )[0][0]; //find the most common boot size
-  delete allData.bootSizes;
+  delete allData.bootSizes;//delete the bootSizes object
+  delete allData.recursiveCount;//delete the recursiveCount property
   console.log(allData);
   return allData;
 }
